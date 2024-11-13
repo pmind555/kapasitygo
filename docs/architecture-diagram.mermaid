@@ -1,0 +1,22 @@
+flowchart TD
+    subgraph IoT_Simulation
+        direction TB
+        A1[Simulated Device 1]
+        A2[Simulated Device 2]
+    end
+    subgraph Backend_API
+        B[FastAPI Application]
+    end
+    subgraph Database
+        C[PostgreSQL]
+    end
+    subgraph Frontend_Dashboard
+        D[Streamlit/Dash Application]
+    end
+    A1 -- HTTP POST --> B
+    A2 -- HTTP POST --> B
+    B -- Inserts Data --> C
+    D -- API Calls --> B
+    B -- Retrieves Data --> C
+    D -- Displays Data --> User[User]
+    B -- Sends Alerts --> D
