@@ -80,5 +80,6 @@ fabric.properties
 # Ignore environment files with sensitive data
 .env
 .env*
-deploy_to_remote.sh
+deploy_to_prod.sh
+deploy_to_stg.sh
 
