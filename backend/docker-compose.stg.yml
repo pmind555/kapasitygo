@@ -1,0 +1,11 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: kapasity-go-image:latest  # Define the image name and tag here
+    container_name: kapasity_go_backend
+    ports:
+      - "8020:8000"
+    env_file:
+      - .env.stg
