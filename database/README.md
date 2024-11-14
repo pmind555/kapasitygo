@@ -7,7 +7,7 @@ This directory contains SQL scripts to set up the PostgreSQL database for Kapasi
 ## Scripts
 
 - `create_database.sql`: Creates the database and a dedicated user (optional).
-- `insert_deviced.sql`: Inserts initial sample devoces (optional).
+- `insert_deviced.sql`: Inserts initial sample devices (optional).
 - `insert_cetrtificates.sql`: Inserts sample certificates (optional).
 
 ## Prerequisites
