@@ -1,3 +1,12 @@
+-- Create database and user
+CREATE DATABASE kapasitygo_db;
+CREATE USER kapasitygo_user WITH PASSWORD 'insert_password_here';
+GRANT USAGE ON SCHEMA public TO kapasitygo_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO kapasitygo_user;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO kapasitygo_user;
+GRANT ALL PRIVILEGES ON SEQUENCE readings_reading_id_seq TO kapasitygo_user;
+GRANT ALL PRIVILEGES ON SEQUENCE device_certificates_certificate_id_seq TO kapasitygo_user;
+
 -- Enable the uuid-ossp extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
