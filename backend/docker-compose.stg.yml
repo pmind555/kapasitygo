@@ -6,6 +6,12 @@ services:
     image: kapasity-go-image:latest  # Define the image name and tag here
     container_name: kapasity_go_backend
     ports:
-      - "8020:8000"
+      - "8020:8000"  # Expose port 8000 of the container on 8020 of the host
     env_file:
-      - .env.stg
+      - .env.stg  # Make sure the .env file contains all necessary variables
+    networks:
+      - devices_network  # Add the network
+
+networks:
+  devices_network:
+    external: true  # Declare the network as external

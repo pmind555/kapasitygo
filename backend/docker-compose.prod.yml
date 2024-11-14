@@ -9,3 +9,9 @@ services:
       - "8060:8000"
     env_file:
       - .env.prod
+    networks:
+      - devices_network  # Add the network
+
+networks:
+  devices_network:
+    external: true  # Declare the network as external
