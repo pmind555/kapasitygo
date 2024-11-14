@@ -8,7 +8,7 @@ KapasityGO is a Smart Waste Management System designed to monitor trash compacto
 
 - [**backend/**](/backend/README.md): Backend API built with Python and FastAPI.
 - [**frontend/**](/frontend/README.md): Frontend application built with Next.js, React, and TypeScript.
-- [**iot-simulator/**](/iot-simulatos/README.md): IoT simulation scripts to mimic trash compactors.
+- [**iot-simulator/**](/iot-simulator/README.md): IoT simulation scripts to mimic trash compactors.
 - [**database/**](/database/README.md): Database scripts and schema definitions.
 - [**docs/**](/docs/README.md): Other Documentation and diagrams.
 
