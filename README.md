@@ -15,6 +15,8 @@
 ## Project Overview
 
 KapasityGO is a Smart Waste Management System designed to monitor trash compactor fullness levels and display data on a web dashboard.
+- Deployed backend is accessible here: http://135.181.101.90:8060/
+- Deployed Frontend - under deployment still.
 
 ## Repository Structure
 
