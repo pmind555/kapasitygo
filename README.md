@@ -1,5 +1,17 @@
 # KapasityGO - Smart Waste Management System
 
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Repository Structure](#repository-structure)
+- [Assumptions Made](#assumptions-made)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Database Creation and Data Insertion](#database-creation-and-data-insertion)
+  - [Backend](#backend)
+  - [IoT Simulator](#iot-simulator)
+  - [Frontend](#frontend)
+- [License](#license)
+
 ## Project Overview
 
 KapasityGO is a Smart Waste Management System designed to monitor trash compactor fullness levels and display data on a web dashboard.
@@ -11,6 +23,15 @@ KapasityGO is a Smart Waste Management System designed to monitor trash compacto
 - [**iot-simulator/**](/iot-simulator/README.md): IoT simulation scripts to mimic trash compactors.
 - [**database/**](/database/README.md): Database scripts and schema definitions.
 - [**docs/**](/docs/README.md): Other documentation and diagrams.
+
+## Assumptions Made
+
+1. **Coding Language**: Python was chosen for the backend and IoT simulator because it is the language I have recently worked with, and it is easy to code and understand while being powerful enough to serve as a backend core.
+2. **Security**: The security implementation is very schematic (no HTTPS, API-KEY-based), but the approach of using x509 certificates on the IoT device side could be usable in a real-life scenario with further improvements.
+3. **Simulation Containers**: Running each simulated device as a separate container can be beneficial when testing at scale, as it allows deploying many containers of different types to simulate a real-life workload.
+4. **Container Deployment**: Everything is deployed as Docker containers because I am most familiar with this approach, and it is still suitable for use in a production environment.
+5. **Hosting Environment**: The project is deployed to an Ubuntu server running in the Hetzner datacenter VPC. This hosting provides great value for money and is well-suited for startups.
+6. **HTTP vs. MQTT**: HTTP was chosen over MQTT as it is a simpler solution to implement. Since compactors send data infrequently (every 15 minutes), HTTP works well without the need for advanced QoS, keep-alive connectivity, etc.
 
 ## Getting Started
 
