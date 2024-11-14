@@ -38,6 +38,7 @@ The KapasityGO Backend is a FastAPI application designed to manage IoT devices, 
   - **Client Certificate Authentication**: The `/readings` endpoint requires a client certificate passed in the `X-Client-Cert` header.
 - **Database Integration**: Uses PostgreSQL for data storage.
 - **Dockerized Deployment**: Easily deployable using Docker and Docker Compose.
+- **Postman Collection**: use Sample Postman collection (KapasityGO API.postman_collection.json) to access working backend.
 
 ---
 
