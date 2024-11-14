@@ -1,0 +1,388 @@
+{
+	"info": {
+		"_postman_id": "50531ade-da12-4a38-a7f5-e24b009fcd83",
+		"name": "KapasityGO API",
+		"description": "Postman collection for testing KapasityGO API endpoints.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32390952"
+	},
+	"item": [
+		{
+			"name": "Devices",
+			"item": [
+				{
+					"name": "Create Device",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Generate the current timestamp\r",
+									"const timestamp = new Date().toISOString().replace(/[-:.TZ]/g, \"\"); // Format as YYYYMMDDHHMMSS\r",
+									"// Set location_name variable with timestamp\r",
+									"pm.environment.set(\"location_name\", `Test ${timestamp}`);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location_name\": \"{{location_name}}\",\n  \"latitude\": 60.2090,\n  \"longitude\": 25.0800\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/devices/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"devices",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Devices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/devices/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"devices",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Device by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/devices/{{device_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Device",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Generate random latitude and longitude within realistic bounds\r",
+									"const latitude = (Math.random() * (61.0 - 59.0) + 59.0).toFixed(6);\r",
+									"const longitude = (Math.random() * (26.0 - 24.0) + 24.0).toFixed(6);\r",
+									"\r",
+									"// Set variables for latitude and longitude\r",
+									"pm.environment.set(\"latitude\", latitude);\r",
+									"pm.environment.set(\"longitude\", longitude);\r",
+									"\r",
+									"// Optional: Set a dynamic location name with timestamp\r",
+									"const timestamp = new Date().toISOString().replace(/[-:.TZ]/g, \"\");\r",
+									"pm.environment.set(\"location_name\", `Test ${timestamp}`);\r",
+									"\r",
+									"// Randomize status field to be either \"active\" or \"disabled\"\r",
+									"const statusOptions = [\"active\", \"disabled\"];\r",
+									"const randomIndex = Math.floor(Math.random() * statusOptions.length);\r",
+									"const status = statusOptions[randomIndex];\r",
+									"pm.environment.set(\"status\", status);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location_name\": \"{{location_name}}\",\n  \"latitude\": {{latitude}},\n  \"longitude\": {{longitude}},\n  \"status\": \"{{status}}\"\n}\n"
+						},
+						"url": {
+							"raw": "{{base_url}}/devices/{{device_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"devices",
+								"{{device_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Readings",
+			"item": [
+				{
+					"name": "Create Reading",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Generate a random fullness level between 0 and 100\r",
+									"const fullnessLevel = Math.floor(Math.random() * 101); // 0 to 100\r",
+									"\r",
+									"// Generate a random timestamp within a recent date range (e.g., last 30 days)\r",
+									"const daysAgo = Math.floor(Math.random() * 30); // Random number of days ago, up to 30\r",
+									"const timestamp = new Date();\r",
+									"timestamp.setDate(timestamp.getDate() - daysAgo); // Set the timestamp to 'daysAgo' days in the past\r",
+									"const randomTimestamp = timestamp.toISOString(); // Convert to ISO string format\r",
+									"\r",
+									"// Set environment variables\r",
+									"pm.environment.set(\"fullness_level\", fullnessLevel);\r",
+									"pm.environment.set(\"timestamp\", randomTimestamp);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Client-Cert",
+								"value": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tDQpNSUlEVkRDQ0Fqd0NGRXIyWWY1RXA4QWUraXYzbFBYd3FMUDJsek5aTUEwR0NTcUdTSWIzRFFFQkN3VUFNRmt4DQpDekFKQmdOVkJBWVRBa1pKTVJFd0R3WURWUVFJREFoSVpXeHphVzVyYVRFUk1BOEdBMVVFQnd3SVNHVnNjMmx1DQphMmt4RVRBUEJnTlZCQW9NQ0V0aGNHRnphWFI1TVJFd0R3WURWUVFEREFoTFlYQmhjMmwwZVRBZUZ3MHlOREV4DQpNVEl3TURBeE1qWmFGdzB5TlRFeE1USXdNREF4TWpaYU1IUXhDekFKQmdOVkJBWVRBa1pKTVJBd0RnWURWUVFJDQpEQWRWZFhOcGJXRmhNUkV3RHdZRFZRUUhEQWhJWld4emFXNXJhVEVSTUE4R0ExVUVDZ3dJUzJGd1lYTnBkSGt4DQpMVEFyQmdOVkJBTU1KRGc1WVRFMk9HRTVMV1ZoTURBdE5HUmlNQzA1WkRjMkxUZzNPV1E0WTJRNFpUZ3lORENDDQpBU0l3RFFZSktvWklodmNOQVFFQkJRQURnZ0VQQURDQ0FRb0NnZ0VCQUxZUEt1RGxralc1MHl3WW5uL2VCZnhFDQpNV0xoN3VuV2V2L09CdlFLOVRxQjJ2Q25DY3hOaE9qWW9ySmZ4RVFFZzR0cXlvQW9Ea0drZWg5MU1teW9pblRODQoyeUE0K01vM0h3dU5uTEZMd1h0YWlwdnRHN2tlREhhUnl6S2ZKSDl5eVdGMHphOUNnYzJabzRNWUExYjN4TlJKDQptYXpTeGo0QkJJdHRSRjl3aEJUblF0ZFlFK1E2TWx0K2d0VW55OFpRczV3WjhjV0xJcUwweHowU0gvRW1YY2ZvDQo3eENHQk1CbDBsYTZPOExzVEpRdWppSXIzWkp4OXFWWVQ4M09iSjZwS3VoamlpeXBEdVFHajlSWEZkNFJLUVM2DQpkQlJqTWZyelowNzhheFl3WFJnWUREVTNaK094eU9GMWJmQVBsSjQzSTlZTzNMWWpkN1pvYUtvREQ3a0l3RTBDDQpBd0VBQVRBTkJna3Foa2lHOXcwQkFRc0ZBQU9DQVFFQUdiZ28yWWp3Qk05Mmw0WGt1eHF2U2VNT01CRldDWk5HDQpocDJBOStoUWZMMGNuaUx6SUVrSDdHU3FpcEhZN05BK0RQVDh5WW9zWUd3NWlRclN2YTFUb2NkdjdyMnZKc2hWDQo2VmpFalV0emRaOEY2MlZ0Q0pBeGdHbWVYOFJvTFd1NzByaDBjVkpjMEVDbTFwaWlNaitramw4djJTMkd2WGhiDQpxZ1E5aTExTlUrVFdnZVIrSEJkTThCbUVSWWhsNXF4VHhSaUtmZ0JMak9MU2o0T080MXVpSWFaNklLbEU0by8zDQp2N0UwdXFIRjVtcS9IK1psTDZCRTVVTGxEMDdJQXk5K3U0dVNWTk0xM3JiSGI4aGVUZTRQa1p5eGg5eEQ0MXJpDQp6dVZTLzhaZ20wRGtJSkJwTEZmTkdMSi9QMmVnVzhGb1JwRHRINnY1L3ZlNHFNWjFEUnhNdHc9PQ0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ0K",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"timestamp\": \"{{timestamp}}\",\n  \"fullness_level\": {{fullness_level}}\n}\n"
+						},
+						"url": {
+							"raw": "{{base_url}}/readings/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"readings",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Readings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/readings/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"readings",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reading by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/readings/{{reading_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"readings",
+								"{{reading_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Certificates",
+			"item": [
+				{
+					"name": "Create Certificate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-api-key",
+								"value": "yjmoplylsnofbxosuimkxkzojpkrtgrjxyohushi",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"device_id\": \"{{device_id}}\",\n  \"certificate_serial_number\": \"12345678911\",\n  \"certificate_fingerprint\": \"ABCDEF123456789011\",\n  \"public_key\": \"-----BEGIN PUBLIC KEY-----\\nMIIBIjANBgkq...\\n-----END PUBLIC KEY-----\",\n  \"expires_at\": \"2025-11-15T12:00:00Z\",\n  \"status\": \"active\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/certificates/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"certificates",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Certificates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "yjmoplylsnofbxosuimkxkzojpkrtgrjxyohushi",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/certificates/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"certificates",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Certificate by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/certificates/{{certificate_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"certificates",
+								"{{certificate_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "x-api-key",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "yjmoplylsnofbxosuimkxkzojpkrtgrjxyohushi",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url_stg",
+			"value": "http://localhost:8020"
+		},
+		{
+			"key": "device_id",
+			"value": "571c020e-1171-4029-a1b6-bdf055d7857b"
+		},
+		{
+			"key": "reading_id",
+			"value": "8"
+		},
+		{
+			"key": "base_url",
+			"value": "http://135.181.101.90:8060",
+			"type": "string"
+		},
+		{
+			"key": "certificate_id",
+			"value": "1",
+			"type": "string"
+		}
+	]
+}
