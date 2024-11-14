@@ -7,6 +7,7 @@ This project simulates IoT devices that send waste compactor fullness levels to 
 - [Project Structure](#project-structure)
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Generation of Certificats](#generation-of-certificats)
 - [Configuration](#configuration)
 - [Running the Simulator](#running-the-simulator)
 - [Docker Deployment](#docker-deployment)
@@ -64,6 +65,11 @@ The simulator project emulates IoT devices that track the fullness of waste comp
    ```bash
    pip install -r requirements.txt
    ```
+   
+## Generation of Certificats
+1. There is a requirement for each simulated device to obtain x509-certificate so these certificate should be generated prior to running similation.
+2. Here is [Certificate Generation for Devices](/iot-simulator/certs/README.md) guide explaining how to make it.
+3. There are 3 test certificates located in [/iot-simulator/certs](/iot-simulator/certs) folder.
 
 ## Configuration
 1. Create a `.env` file in the root directory to define the environment variables used in the project.
