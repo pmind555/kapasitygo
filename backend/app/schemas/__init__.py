@@ -3,3 +3,4 @@
 from .device import Device, DeviceCreate
 from .reading import Reading, ReadingCreate
 from .certificate import Certificate, CertificateCreate
+from .alertdevice import AlertDevice
