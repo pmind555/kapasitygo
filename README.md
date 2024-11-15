@@ -16,7 +16,9 @@
 
 KapasityGO is a Smart Waste Management System designed to monitor trash compactor fullness levels and display data on a web dashboard.
 - Deployed backend is accessible here: http://135.181.101.90:8060/
-- Deployed Frontend - under deployment still.
+- Deployed Frontend/Dashboard: http://135.181.101.90:8081/
+
+  
 
 ## Repository Structure
 
@@ -24,7 +26,7 @@ KapasityGO is a Smart Waste Management System designed to monitor trash compacto
 - [**frontend/**](/frontend/README.md): Frontend application built with Next.js, React, and TypeScript.
 - [**iot-simulator/**](/iot-simulator/README.md): IoT simulation scripts to mimic trash compactors.
 - [**database/**](/database/README.md): Database scripts and schema definitions.
-- [**docs/**](/docs/README.md): Other documentation and diagrams.
+- [**docs/**](/docs/README.md): Architecture diagram & Other documentation.
 
 ## Assumptions Made
 
