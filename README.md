@@ -15,8 +15,8 @@
 ## Project Overview
 
 KapasityGO is a Smart Waste Management System designed to monitor trash compactor fullness levels and display data on a web dashboard.
-- Deployed backend is accessible here: http://135.181.101.90:8060/ with OpenAPI documentation here http://135.181.101.90:8060/docs
-- Deployed Frontend/Dashboard: http://135.181.101.90:8081/
+- Deployed backend is accessible here: [http://135.181.101.90:8060/](http://135.181.101.90:8060/) with OpenAPI documentation here [http://135.181.101.90:8060/docs](http://135.181.101.90:8060/docs)
+- Deployed Frontend/Dashboard: [https://kapasitygo.pmind555.space/](https://kapasitygo.pmind555.space/)
 
   
 
